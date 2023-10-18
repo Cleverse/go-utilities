@@ -46,7 +46,7 @@ jobs:
       - name: Lint
         uses: reviewdog/action-golangci-lint@v2
         with: # https://github.com/reviewdog/action-golangci-lint#inputs
-          go_version_file: "go.mod"
+          go_version: ${{ env.GOVERSION }}
           workdir: ./
           golangci_lint_flags: "--config=./.golangci.yaml --verbose --new-from-rev=${{ github.event.pull_request.base.sha }}"
           fail_on_error: true
