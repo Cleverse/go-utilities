@@ -13,5 +13,6 @@ import (
 //
 // A non-nil error returned by Join implements the Unwrap() []error method.
 func Join(errs ...error) error {
+	// TODO: support stack trace
 	return stderrors.Join(errs...)
 }
