@@ -8,7 +8,6 @@
     "**/.DS_Store": true
   },
   "search.exclude": {
-    "**/node_modules": true,
     "**/build": true,
     "**/dist": true
   },
@@ -33,7 +32,6 @@
     "ui.codelenses": {
       "gc_details": true
     },
-    "build.directoryFilters": ["-**/node_modules"],
     "ui.semanticTokens": true,
     "ui.completion.usePlaceholders": false,
     "ui.diagnostic.analyses": {
