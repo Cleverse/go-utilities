@@ -43,13 +43,14 @@ jobs:
         # Q: Why Reviewdog ?
         # A: Because golangci-lint action has some issues, not working on self-hosted runners and can't report errors detail on review comments.
         # See: https://github.com/reviewdog/reviewdog
-      - name: Lint
-        uses: reviewdog/action-golangci-lint@v2
-        with: # https://github.com/reviewdog/action-golangci-lint#inputs
-          go_version_file: "go.mod"
-          workdir: ./
-          golangci_lint_flags: "--config=./.golangci.yaml --verbose --new-from-rev=${{ github.event.pull_request.base.sha }}"
-          fail_on_error: true
+      # TODO: fix for go workspaces (it's throw error: `no go files to analyze`)
+      # - name: Lint
+      #   uses: reviewdog/action-golangci-lint@v2
+      #   with: # https://github.com/reviewdog/action-golangci-lint#inputs
+      #     go_version_file: "go.mod"
+      #     workdir: ./
+      #     golangci_lint_flags: "--config=./.golangci.yaml --verbose --new-from-rev=${{ github.event.pull_request.base.sha }}"
+      #     fail_on_error: true
 
       - name: Test
         run: go list -f '{{.Dir}}/...' -m | xargs go test
