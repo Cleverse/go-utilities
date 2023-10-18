@@ -1,7 +1,13 @@
-//go:build !go1.20
-// +build !go1.20
+//go:build go1.20
+// +build go1.20
 
 package errors
+
+import (
+	stderrors "errors"
+
+	errors "github.com/Cleverse/go-utilities/errors/errconstructor"
+)
 
 // Join returns an error that wraps the given errors with a stack trace at the point WithStack was called.
 // Any nil error values are discarded.
@@ -12,6 +18,5 @@ package errors
 //
 // A non-nil error returned by Join implements the Unwrap() []error method.
 func Join(errs ...error) error {
-	// TODO: implement Join for backwards compatibility
-	panic("not implemented")
+	return errors.WithStack(stderrors.Join(errs...), 1)
 }
