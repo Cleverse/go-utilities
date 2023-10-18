@@ -90,6 +90,8 @@ func Wrapf(err error, format string, args ...interface{}) error {
 // If the error does not implement Cause, the original error will
 // be returned. If the error is nil, nil will be returned without further
 // investigation.
+//
+// nolint: errorlint, wrapcheck
 func Cause(err error) error {
 	for err != nil {
 		cause, ok := err.(interface{ Cause() error })
