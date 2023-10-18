@@ -10,6 +10,7 @@ ignore.*
 # Eg. tmps/foo_test.go, tmps/credentials.json, tmps/config.yml
 **/tmps/**
 
+# output
 *.exe
 *.test
 *.prof
