@@ -1,0 +1,27 @@
+# Eg. foo_test.ignore.go, credentials.ignore.json, config.ignore.yml
+*.ignore.*
+# Eg. ignore.foo_test.go, ignore.credentials.json, ignore.config.yml
+ignore.*
+
+# Eg. cmd.local/main.go, cmd.local.test/main.go
+**/cmd.local/**
+**/cmd.local.**/**
+
+# Eg. tmps/foo_test.go, tmps/credentials.json, tmps/config.yml
+**/tmps/**
+
+*.exe
+*.test
+*.prof
+
+.idea
+.env
+.DS_Store
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
