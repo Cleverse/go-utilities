@@ -4,3 +4,9 @@
 # go-utilities
 
 Miscellaneous useful Go packages by [Cleverse](https://about.cleverse.com)
+
+## errors
+
+Package errors adds stacktrace support to errors in go.
+
+[See here](errors/README.md).
