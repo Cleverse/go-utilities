@@ -81,8 +81,8 @@ func TestFormatNew(t *testing.T) {
 		"%+v",
 		[]string{
 			"error\n",
-			"github.com/Cleverse/go-utilities/stderrors.TestFormatNew\n",
-			"errors/errors_test.go:81",
+			"github.com/Cleverse/go-utilities/errors.TestFormatNew\n",
+			"errors/errors_test.go:80",
 		},
 	}, {
 		New("error"),
