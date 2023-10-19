@@ -3,9 +3,7 @@
 
 package errors
 
-import (
-	errors "github.com/Cleverse/go-utilities/errors/errconstructor"
-)
+import errors "github.com/Cleverse/go-utilities/errors/errconstructor"
 
 // Disclaimer: functions Join is copied from the stdlib errors
 // package v1.21.0.
@@ -29,20 +27,20 @@ func Join(errs ...error) error {
 		return nil
 	}
 	e := &joinError{
-		stack: errors.Callers(0),
-		errs:  make([]error, 0, n),
+		// stack: errors.Callers(0),
+		errs: make([]error, 0, n),
 	}
 	for _, err := range errs {
 		if err != nil {
 			e.errs = append(e.errs, err)
 		}
 	}
-	return e
+	return errors.WithStack(e, 1)
 }
 
 type joinError struct {
-	stack *errors.Stacks
-	errs  []error
+	// stack *errors.Stacks
+	errs []error
 }
 
 func (e *joinError) Error() string {
