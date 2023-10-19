@@ -6,7 +6,7 @@ package errors
 import errors "github.com/Cleverse/go-utilities/errors/errconstructor"
 
 // Disclaimer: functions Join is copied from the stdlib errors
-// package v1.21.0.
+// package v1.21.3
 
 // Join returns an error that wraps the given errors with a stack trace at the point WithStack was called.
 // Any nil error values are discarded.
