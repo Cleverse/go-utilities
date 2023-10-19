@@ -1,7 +1,6 @@
 package errors
 
 import (
-	"errors"
 	stderrors "errors"
 	"fmt"
 	"io"
@@ -20,7 +19,7 @@ func TestNew(t *testing.T) {
 		want error
 	}{
 		{"new error", New("new error")},
-		{"with format: %v", errors.New("with format: %v")},
+		{"with format: %v", stderrors.New("with format: %v")},
 	}
 
 	for _, testcase := range testcases {
@@ -48,7 +47,7 @@ func TestErrorf(t *testing.T) {
 	}, {
 		"with format: %v",
 		[]interface{}{"value"},
-		errors.New("with format: value"),
+		stderrors.New("with format: value"),
 	}}
 
 	for _, testcase := range testcases {
@@ -83,7 +82,7 @@ func TestFormatNew(t *testing.T) {
 		[]string{
 			"error\n",
 			"github.com/Cleverse/go-utilities/errors.TestFormatNew\n",
-			"errors/errors_test.go:81",
+			"errors/errors_test.go:80",
 		},
 	}, {
 		New("error"),
