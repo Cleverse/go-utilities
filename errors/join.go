@@ -20,3 +20,5 @@ import (
 func Join(errs ...error) error {
 	return errors.WithStack(stderrors.Join(errs...), 1)
 }
+
+// TODO: implement joinError.Format method for stack traces printing
