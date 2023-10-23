@@ -3,7 +3,7 @@
 
 # go-utilities
 
-Miscellaneous useful Go packages by [Cleverse](https://about.cleverse.com)
+Miscellaneous useful shared Go packages by [Cleverse](https://about.cleverse.com)
 
 ## utils
 
@@ -22,3 +22,9 @@ Pure Golang errors library with stacktrace support (for wrapping and formatting 
 Ethereum address utilities package. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
 
 [See here](address/README.md).
+
+## fixedpoint
+
+A [shopspring/decimal](https://github.com/shopspring/decimal) wrapper library for fixed point arithmetic operations in Cleverse projects.
+
+[See here](fixedpoint/README.md).
