@@ -3,7 +3,7 @@
 
 # utils
 
-Optimized common generic utilities for Cleverse projects.
+Pure Golang optimized generic utilities for Cleverse projects.
 
 ## Installation
 

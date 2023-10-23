@@ -3,7 +3,7 @@
 
 # errors
 
-Package errors adds stacktrace support to errors in go.
+Pure Golang errors library with stacktrace support (for wrapping and formatting an errors).
 
 ## Installation
 
