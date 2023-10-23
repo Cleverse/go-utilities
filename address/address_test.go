@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/stretchr/testify/assert"
 )
 
 func BenchmarkRandomAddress(b *testing.B) {
@@ -136,9 +137,7 @@ func TestToLower(t *testing.T) {
 	address := "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
 	expected := strings.ToLower(address)
 	actual := ToLower(common.HexToAddress(expected))
-	if expected != actual {
-		t.Errorf("expected %s, got %s \n", expected, actual)
-	}
+	assert.Equal(t, expected, actual)
 }
 
 func TestToLowers(t *testing.T) {
@@ -150,19 +149,14 @@ func TestToLowers(t *testing.T) {
 
 	actuals := ToLowers(addresses)
 	for i, actual := range actuals {
-		expected := strings.ToLower(addresses[i].String())
-		if expected != actual {
-			t.Errorf("expected %s, got %s \n", expected, actual)
-		}
+		assert.Equal(t, strings.ToLower(addresses[i].String()), actual)
 	}
 }
 
 func TestToString(t *testing.T) {
 	expected := "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
 	actual := ToString(common.HexToAddress(expected))
-	if !strings.EqualFold(expected, actual) {
-		t.Errorf("expected %s, got %s", expected, actual)
-	}
+	assert.Equal(t, strings.ToLower(expected), actual)
 }
 
 func TestToStrings(t *testing.T) {
@@ -174,10 +168,7 @@ func TestToStrings(t *testing.T) {
 
 	actuals := ToStrings(addresses)
 	for i, actual := range actuals {
-		expected := strings.ToLower(addresses[i].String())
-		if expected != actual {
-			t.Errorf("expected %s, got %s \n", expected, actual)
-		}
+		assert.Equal(t, strings.ToLower(addresses[i].String()), actual)
 	}
 }
 
@@ -189,10 +180,8 @@ func TestFromStrings(t *testing.T) {
 	}
 	expectedString := ToStrings(expected)
 
-	actual := FromStrings(expectedString)
-	for i, addr := range actual {
-		if addr != expected[i] {
-			t.Errorf("expected %s, got %s \n", expected[i], addr)
-		}
+	actuals := FromStrings(expectedString)
+	for i, actual := range actuals {
+		assert.Equal(t, expected[i], actual)
 	}
 }
