@@ -1,6 +1,12 @@
 go 1.21
 
+// Specific Go version to use for running/compiling the code in this workspace.
+// Toolchain will be automatically installed if not already present.
+// See more: https://go.dev/blog/toolchain#toolchain-management
+toolchain go1.21.3
+
 use (
 	./
+	./address
 	./errors
 )
