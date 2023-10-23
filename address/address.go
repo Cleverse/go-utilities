@@ -3,9 +3,9 @@ package address
 import (
 	"crypto/rand"
 	"encoding/hex"
-	"reflect"
 	"strings"
 
+	"github.com/Cleverse/go-utilities/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 )
@@ -128,32 +128,11 @@ func Random() (addr common.Address) {
 
 // RandomFromPrivateKey returns a random address from a random private key
 func RandomFromPrivateKey() common.Address {
-	return crypto.PubkeyToAddress(must(crypto.GenerateKey()).PublicKey)
+	return crypto.PubkeyToAddress(utils.Must(crypto.GenerateKey()).PublicKey)
 }
 
 // RandomFromBytes returns a random address from a random byte slice (via crypto/rand)
 func RandomFromBytes() (addr common.Address) {
 	_, _ = rand.Read(addr[:])
 	return addr
-}
-
-// must panics if err is error or false.
-func must[T any](val T, err any) T {
-	func() {
-		if err == nil {
-			return
-		}
-		switch e := err.(type) {
-		case bool:
-			if !e {
-				panic("not ok")
-			}
-		case error:
-			panic(e.Error())
-		default:
-			panic("must: invalid err type '" + reflect.TypeOf(err).Name() + "', should either be a bool or an error")
-		}
-	}()
-
-	return val
 }
