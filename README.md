@@ -17,6 +17,13 @@ Pure Golang errors library with stacktrace support (for wrapping and formatting 
 
 [See here](errors/README.md).
 
+## queue
+
+A Pure Golang low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue implementation (async enqueue and blocking dequeue supports).\
+The alternative way to communicate between goroutines compared to `channel`
+
+[See here](queue/README.md).
+
 ## address
 
 Ethereum address utilities package. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
