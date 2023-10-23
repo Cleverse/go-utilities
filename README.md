@@ -16,3 +16,9 @@ Optimized common generic utilities for Cleverse Golang projects.
 Package errors adds stacktrace support to errors in go.
 
 [See here](errors/README.md).
+
+## address
+
+[go-ethereum](https://github.com/ethereum/go-ethereum) address utilities package.
+
+[See here](address/README.md).
