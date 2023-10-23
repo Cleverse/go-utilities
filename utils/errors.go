@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"reflect"
 )
 
@@ -76,19 +75,5 @@ func must(err any, messageArgs ...interface{}) {
 		panic(e)
 	default:
 		panic("must: invalid err type '" + reflect.TypeOf(err).Name() + "', should either be a bool or an error")
-	}
-}
-
-func msgFormatter(msgAndArgs ...interface{}) string {
-	switch len(msgAndArgs) {
-	case 0:
-		return ""
-	case 1:
-		if msgAsStr, ok := msgAndArgs[0].(string); ok {
-			return msgAsStr
-		}
-		return fmt.Sprintf("%+v", msgAndArgs[0])
-	default:
-		return fmt.Sprintf(msgAndArgs[0].(string), msgAndArgs[1:]...)
 	}
 }

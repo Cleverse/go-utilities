@@ -3,8 +3,6 @@ package utils
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestZeroFieldsEqualStructHasZero(t *testing.T) {
@@ -29,8 +27,8 @@ func TestZeroFieldsEqualStructHasZero(t *testing.T) {
 		}
 		isZero_01 := len(StructZeroFields(val)) > 0
 		isZero_02 := StructHasZero(val)
-		assert.Equal(t, isZero_01, isZero_02)
-		assert.True(t, isZero_01)
+		assertEqual(t, isZero_01, isZero_02)
+		assertTrue(t, isZero_01)
 	}
 	{
 		val := ABC{
@@ -43,14 +41,14 @@ func TestZeroFieldsEqualStructHasZero(t *testing.T) {
 		{
 			isZero_01 := len(StructZeroFields(val)) > 0
 			isZero_02 := StructHasZero(val)
-			assert.Equal(t, isZero_01, isZero_02)
-			assert.False(t, isZero_01)
+			assertEqual(t, isZero_01, isZero_02)
+			assertFalse(t, isZero_01)
 		}
 		{
 			isZero_01 := len(StructZeroFields(val, true)) > 0
 			isZero_02 := StructHasZero(val, true)
-			assert.Equal(t, isZero_01, isZero_02)
-			assert.True(t, isZero_01)
+			assertEqual(t, isZero_01, isZero_02)
+			assertTrue(t, isZero_01)
 		}
 	}
 	{
@@ -65,14 +63,14 @@ func TestZeroFieldsEqualStructHasZero(t *testing.T) {
 		{
 			isZero_01 := len(StructZeroFields(val)) > 0
 			isZero_02 := StructHasZero(val)
-			assert.Equal(t, isZero_01, isZero_02)
-			assert.False(t, isZero_01)
+			assertEqual(t, isZero_01, isZero_02)
+			assertFalse(t, isZero_01)
 		}
 		{
 			isZero_01 := len(StructZeroFields(val, true)) > 0
 			isZero_02 := StructHasZero(val, true)
-			assert.Equal(t, isZero_01, isZero_02)
-			assert.True(t, isZero_01)
+			assertEqual(t, isZero_01, isZero_02)
+			assertTrue(t, isZero_01)
 		}
 	}
 }
@@ -148,7 +146,7 @@ func TestStructZeroFields(t *testing.T) {
 
 	for i, testSpec := range testSpecs {
 		t.Run(fmt.Sprint("#", i+1), func(t *testing.T) {
-			assert.Equal(t, testSpec.ExpectedFields, StructZeroFields(testSpec.Struct, testSpec.CheckNested))
+			assertEqualAny(t, testSpec.ExpectedFields, StructZeroFields(testSpec.Struct, testSpec.CheckNested))
 		})
 	}
 }
@@ -229,7 +227,7 @@ func TestStructHasZero(t *testing.T) {
 
 	for i, testSpec := range testSpecs {
 		t.Run(fmt.Sprint("#", i+1), func(t *testing.T) {
-			assert.Equal(t, testSpec.ExpectedZero, StructHasZero(testSpec.Struct))
+			assertEqual(t, testSpec.ExpectedZero, StructHasZero(testSpec.Struct))
 		})
 	}
 }
@@ -270,14 +268,14 @@ func TestMerge(t *testing.T) {
 
 	result := Merge(&to, from)
 
-	assert.Equal(t, from.A, result.A)
-	assert.NotEqual(t, org.A, result.A)
-	assert.Equal(t, org.B, result.B)
-	assert.NotEqual(t, from.B, result.B)
-	assert.Equal(t, from.C, result.C)
-	assert.NotEqual(t, org.C, result.C)
-	assert.Equal(t, org.D, result.D)
-	assert.NotEqual(t, from.D, result.D)
-	assert.Equal(t, from.E, result.E)
-	assert.NotEqual(t, org.E, result.E)
+	assertEqual(t, from.A, result.A)
+	assertNotEqual(t, org.A, result.A)
+	assertEqual(t, org.B, result.B)
+	assertNotEqual(t, from.B, result.B)
+	assertEqual(t, from.C, result.C)
+	assertNotEqual(t, org.C, result.C)
+	assertEqual(t, org.D, result.D)
+	assertNotEqual(t, from.D, result.D)
+	assertEqual(t, from.E, result.E)
+	assertNotEqual(t, org.E, result.E)
 }

@@ -1,5 +1,7 @@
 package utils
 
+import "fmt"
+
 // Default inspired by Nullish coalescing operator (??) in JavaScript
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing
 func Default[T comparable](value T, defaultValue T) (result T) {
@@ -39,4 +41,18 @@ func Zero[T any](value T) T {
 func Empty[T any]() T {
 	var zero T
 	return zero
+}
+
+func msgFormatter(msgAndArgs ...interface{}) string {
+	switch len(msgAndArgs) {
+	case 0:
+		return ""
+	case 1:
+		if msgAsStr, ok := msgAndArgs[0].(string); ok {
+			return msgAsStr
+		}
+		return fmt.Sprintf("%+v", msgAndArgs[0])
+	default:
+		return fmt.Sprintf(msgAndArgs[0].(string), msgAndArgs[1:]...)
+	}
 }
