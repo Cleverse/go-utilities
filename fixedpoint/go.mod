@@ -3,7 +3,7 @@ module github.com/Cleverse/go-utilities/fixedpoint
 go 1.18
 
 require (
-	github.com/Cleverse/go-utilities/errors v0.0.0-20231023130535-e3ebe3575a4a
+	github.com/Cleverse/go-utilities/errors v0.0.0-20231023145752-bf717ad18472
 	github.com/google/go-cmp v0.6.0
 	github.com/holiman/uint256 v1.2.3
 	github.com/jackc/pgtype v1.14.0

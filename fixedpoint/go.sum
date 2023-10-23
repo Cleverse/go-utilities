@@ -3,6 +3,10 @@ github.com/Cleverse/go-utilities/errors v0.0.0-20231023122701-5e150bec1f5f h1:WW
 github.com/Cleverse/go-utilities/errors v0.0.0-20231023122701-5e150bec1f5f/go.mod h1:1QK+h746G1DwellQ6KK2rBCJusZqIDTZ9QFVGnUX9+Q=
 github.com/Cleverse/go-utilities/errors v0.0.0-20231023130535-e3ebe3575a4a h1:H6TxbWtIQCI1Aa32OVHl8wIO9H3TPZ3uSmDQOXVDz2s=
 github.com/Cleverse/go-utilities/errors v0.0.0-20231023130535-e3ebe3575a4a/go.mod h1:1QK+h746G1DwellQ6KK2rBCJusZqIDTZ9QFVGnUX9+Q=
+github.com/Cleverse/go-utilities/errors v0.0.0-20231023135005-41abe6c3e612 h1:wdsKdC9xCauvuu9u0LDWF9xWDpBNMCHaEkwe2zk1auk=
+github.com/Cleverse/go-utilities/errors v0.0.0-20231023135005-41abe6c3e612/go.mod h1:1QK+h746G1DwellQ6KK2rBCJusZqIDTZ9QFVGnUX9+Q=
+github.com/Cleverse/go-utilities/errors v0.0.0-20231023145752-bf717ad18472 h1:idus9ZoZu9dHjRq0vNg/0WN8zKZlQUhAbWPSZqacuOk=
+github.com/Cleverse/go-utilities/errors v0.0.0-20231023145752-bf717ad18472/go.mod h1:1QK+h746G1DwellQ6KK2rBCJusZqIDTZ9QFVGnUX9+Q=
 github.com/Masterminds/semver/v3 v3.1.1/go.mod h1:VPu/7SZ7ePZ3QOrcuXROw5FAcLl4a0cBrbBpGY/8hQs=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
