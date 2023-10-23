@@ -1,0 +1,23 @@
+module github.com/Cleverse/go-utilities/fixedpoint
+
+go 1.18
+
+require (
+	github.com/Cleverse/go-utilities/errors v0.0.0-20231023130535-e3ebe3575a4a
+	github.com/google/go-cmp v0.6.0
+	github.com/holiman/uint256 v1.2.3
+	github.com/jackc/pgtype v1.14.0
+	github.com/lib/pq v1.10.9
+	github.com/shopspring/decimal v1.3.1
+	github.com/stretchr/testify v1.8.4
+	golang.org/x/exp v0.0.0-20231006140011-7918f672742d
+	gotest.tools v2.2.0+incompatible
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/jackc/pgio v1.0.0 // indirect
+	github.com/pkg/errors v0.8.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+)
