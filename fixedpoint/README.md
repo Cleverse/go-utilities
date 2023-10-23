@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/Cleverse/go-utilities/fixedpoint?status.svg)](http://godoc.org/github.com/Cleverse/go-utilities/fixedpoint)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Cleverse/go-utilities/fixedpoint.svg)](https://pkg.go.dev/github.com/Cleverse/go-utilities/fixedpoint)
 [![Report card](https://goreportcard.com/badge/github.com/Cleverse/go-utilities/fixedpoint)](https://goreportcard.com/report/github.com/Cleverse/go-utilities/fixedpoint)
 
 # fixedpoint

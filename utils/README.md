@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/Cleverse/go-utilities/utils?status.svg)](http://godoc.org/github.com/Cleverse/go-utilities/utils)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Cleverse/go-utilities/utils.svg)](https://pkg.go.dev/github.com/Cleverse/go-utilities/utils)
 [![Report card](https://goreportcard.com/badge/github.com/Cleverse/go-utilities/utils)](https://goreportcard.com/report/github.com/Cleverse/go-utilities/utils)
 
 # utils

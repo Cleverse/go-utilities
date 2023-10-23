@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/Cleverse/go-utilities/queue?status.svg)](http://godoc.org/github.com/Cleverse/go-utilities/queue)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Cleverse/go-utilities/queue.svg)](https://pkg.go.dev/github.com/Cleverse/go-utilities/queue)
 [![Report card](https://goreportcard.com/badge/github.com/Cleverse/go-utilities/queue)](https://goreportcard.com/report/github.com/Cleverse/go-utilities/queue)
 
 # queue
