@@ -3,13 +3,12 @@ module github.com/Cleverse/go-utilities/address
 go 1.21
 
 require (
-	github.com/Cleverse/go-utilities/utils v0.0.0-20231023145752-bf717ad18472
+	github.com/Cleverse/go-utilities/utils v0.0.0-20231023151028-e2291921ecce
 	github.com/ethereum/go-ethereum v1.13.4
 	github.com/stretchr/testify v1.8.4
 )
 
 require (
-	github.com/Cleverse/go-utilities/errors v0.0.0-20231023135005-41abe6c3e612 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0 // indirect
