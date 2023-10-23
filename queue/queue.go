@@ -76,11 +76,10 @@ func (q *Queue[T]) Dequeue() (val T, ok bool) {
 	q.mu.Lock()
 	defer q.mu.Unlock()
 
-	if q.isClosed {
-		return val, false
-	}
-
 	for len(q.items) == 0 {
+		if q.isClosed {
+			return val, false
+		}
 		q.cond.Wait()
 	}
 
