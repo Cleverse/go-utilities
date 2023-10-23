@@ -9,5 +9,6 @@ use (
 	./address
 	./errors
 	./fixedpoint
+	./queue
 	./utils
 )
