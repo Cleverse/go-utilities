@@ -5,6 +5,12 @@
 
 Miscellaneous useful Go packages by [Cleverse](https://about.cleverse.com)
 
+## utils
+
+Optimized common generic utilities for Cleverse Golang projects.
+
+[See here](utils/README.md).
+
 ## errors
 
 Package errors adds stacktrace support to errors in go.
