@@ -2,8 +2,7 @@ package utils
 
 import (
 	"encoding/hex"
-
-	"github.com/Cleverse/go-utilities/errors"
+	"fmt"
 )
 
 // RandomHex returns a random hex string with the given length.
@@ -62,5 +61,5 @@ func isHexCharacter(c byte) bool {
 // DecodeHex decodes a hex string into a byte slice. str can be prefixed with 0x.
 func DecodeHex(str string) ([]byte, error) {
 	b, err := hex.DecodeString(Trim0xPrefix(str))
-	return b, errors.WithStack(err)
+	return b, fmt.Errorf("decode hex: %w", err)
 }

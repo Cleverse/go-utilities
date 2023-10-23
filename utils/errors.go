@@ -1,10 +1,7 @@
 package utils
 
 import (
-	"fmt"
 	"reflect"
-
-	"github.com/Cleverse/go-utilities/errors"
 )
 
 // Must is used to simplify error handling.
@@ -21,7 +18,7 @@ func Must[T any](data T, err any, messageArgs ...interface{}) T {
 // warning: this is not safe, use with caution!! (avoid to use it's in runtime)
 func MustNotError[T any](data T, err error) T {
 	if err != nil {
-		panic(errors.WithStack(err))
+		panic(err)
 	}
 	return data
 }
@@ -40,7 +37,7 @@ func UnsafeMust[T any, E any](data T, e E) T {
 // warning: this is not safe, use with caution!! (avoid to use it's in runtime)
 func MustOK[T any](data T, ok bool) T {
 	if !ok {
-		panic(errors.Errorf("got not ok, but should ok"))
+		panic("got not ok, but should ok")
 	}
 	return data
 }
@@ -51,7 +48,7 @@ func MustOK[T any](data T, ok bool) T {
 // warning: this is not safe, use with caution!! (avoid to use it's in runtime)
 func MustNotOK[T any](data T, ok bool) T {
 	if ok {
-		panic(errors.Errorf("got ok, but should not ok"))
+		panic("got ok, but should not ok")
 	}
 	return data
 }
@@ -75,22 +72,8 @@ func must(err any, messageArgs ...interface{}) {
 		if message != "" {
 			panic(message + ": " + e.Error())
 		}
-		panic(errors.WithStack(e))
+		panic(e)
 	default:
 		panic("must: invalid err type '" + reflect.TypeOf(err).Name() + "', should either be a bool or an error")
-	}
-}
-
-func msgFormatter(msgAndArgs ...interface{}) string {
-	switch len(msgAndArgs) {
-	case 0:
-		return ""
-	case 1:
-		if msgAsStr, ok := msgAndArgs[0].(string); ok {
-			return msgAsStr
-		}
-		return fmt.Sprintf("%+v", msgAndArgs[0])
-	default:
-		return fmt.Sprintf(msgAndArgs[0].(string), msgAndArgs[1:]...)
 	}
 }

@@ -2,8 +2,6 @@ package utils
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestHex0XPrefix(t *testing.T) {
@@ -74,9 +72,12 @@ func TestHex0XPrefix(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.Input, func(t *testing.T) {
-			assert := assert.New(t)
-			assert.Equal(tc.Has0xPrefix, Has0xPrefix(tc.Input), "Has0xPrefix should be equal")
-			assert.Equal(tc.Expected, tc.Func(tc.Input), "actual result from `Func(string) string` should equal to expected")
+			if isHasPrefix := Has0xPrefix(tc.Input); tc.Has0xPrefix != isHasPrefix {
+				t.Errorf("expected Has0xPrefix to be %v, but got %v", tc.Has0xPrefix, isHasPrefix)
+			}
+			if actual := tc.Func(tc.Input); tc.Expected != actual {
+				t.Errorf("expected result from `Func(string) string` to be %v, but got %v", tc.Expected, actual)
+			}
 		})
 	}
 }
