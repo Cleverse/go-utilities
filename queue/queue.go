@@ -3,6 +3,7 @@
 // It's alternative way to communicate between goroutines compared to `channel`.
 // The implementation of this in-memory message queue uses sync.Cond instead of channel.
 //
+// This queue is low-level and simple library, it's not a full-featured message queue.
 // If your use-case requires a limited-size queue and blocking enqueue, please use a channel instead.
 // For advanced use-cases like distributed queue, persistent message please use a message broker like Kafka, RabbitMQ, NATES or NSQ instead.
 //

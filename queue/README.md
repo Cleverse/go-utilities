@@ -12,6 +12,11 @@ It's alternative way to communicate between goroutines compared to `channel`
 >
 > And if your use-case requires a limited-size queue and blocking enqueue, please use a channel instead.
 
+This package is low-level and simple queue library, it's not a full-featured message queue. \
+You can build any advanced message queue on top of this queue (use this queue for under the hood)
+like an advance message queue like a single-producer with multiple-consumers queue,
+broadcast system, multiple topics queue or any other use-cases.
+
 ## Installation
 
 ```shell

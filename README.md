@@ -19,9 +19,8 @@ Pure Golang errors library with stacktrace support (for wrapping and formatting 
 
 ## queue
 
-A Pure Golang thread-safe and unlimited-size generics in-memory message queue implementation
-that supports async enqueue and blocking dequeue. \
-It's alternative way to communicate between goroutines compared to `channel`
+A Pure Golang low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue implementation (async enqueue and blocking dequeue supports).\
+The alternative way to communicate between goroutines compared to `channel`
 
 [See here](queue/README.md).
 
