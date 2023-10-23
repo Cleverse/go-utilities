@@ -1,5 +1,6 @@
-// Package queue provides a thread-safe and unlimited-size generics in-memory message queue implementation.
-// that supports async enqueue and blocking dequeue and alternative way to communicate between goroutines.
+// Package queue provides a Pure Golang thread-safe and unlimited-size generics in-memory message queue implementation
+// that supports async enqueue and blocking dequeue.
+// It's alternative way to communicate between goroutines compared to `channel`.
 // The implementation of this in-memory message queue uses sync.Cond instead of channel.
 //
 // If your use-case requires a limited-size queue and blocking enqueue, please use a channel instead.
