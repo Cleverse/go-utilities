@@ -19,6 +19,6 @@ Pure Golang errors library with stacktrace support (for wrapping and formatting 
 
 ## address
 
-[go-ethereum](https://github.com/ethereum/go-ethereum) address utilities package.
+Ethereum address utilities package. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
 
 [See here](address/README.md).
