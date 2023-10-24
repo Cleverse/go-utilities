@@ -1,5 +1,4 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/Cleverse/go-utilities.svg)](https://pkg.go.dev/github.com/Cleverse/go-utilities)
-[![Report card](https://goreportcard.com/badge/github.com/Cleverse/go-utilities)](https://goreportcard.com/report/github.com/Cleverse/go-utilities)
 
 # go-utilities
 
