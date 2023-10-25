@@ -1,5 +1,5 @@
 /*
-# Example
+# Examples
 
 Basic usage:
 
