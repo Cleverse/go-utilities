@@ -1,3 +1,4 @@
+// Package address provides efficient utilities for easily working with Ethereum addresses.
 package address
 
 import (

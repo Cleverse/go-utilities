@@ -1,3 +1,4 @@
+// Package utils provides Minimalist and zero-dependency utility functions.
 package utils
 
 import "fmt"

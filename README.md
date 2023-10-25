@@ -26,7 +26,7 @@ The alternative way to communicate between goroutines compared to `channel`
 
 ## address
 
-Ethereum address utilities package. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
+High efficient and minimal utilities library that will help you to work with Ethereum addresses easier. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
 
 [See here](address/README.md).
 
