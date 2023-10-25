@@ -3,7 +3,7 @@
 
 # queue
 
-A Pure Golang thread-safe and unlimited-size generics in-memory message queue implementation
+Minimalist and zero-dependency thread-safe and unlimited-size generics in-memory message queue implementation
 that supports async enqueue and blocking dequeue. \
 It's alternative way to communicate between goroutines compared to `channel`
 
