@@ -3,7 +3,7 @@
 
 # errors
 
-Pure Golang errors library with stacktrace support (for wrapping and formatting an errors).
+Minimalist and zero-dependency errors library with stacktrace support for Go (for wrapping and formatting an errors).
 
 ## Installation
 
