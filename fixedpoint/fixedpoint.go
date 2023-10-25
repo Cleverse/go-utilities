@@ -1,3 +1,4 @@
+// Package fixedpoint provides a shopspring/decimal wrapper library for fixed point arithmetic operations.
 package fixedpoint
 
 import (

@@ -1,3 +1,24 @@
+// Package errors provides Pure Golang errors library with stacktrace support (for wrapping, formatting and joining an errors).
+//
+// Add errors context to your report just by wrapping it with stacktrace.
+//
+//	b, err := json.Unmarshal(data, &Data)
+//	if err != nil {
+//	        return errors.WithStack(err)
+//	}
+//
+// Describe more error details by wrapping it with message.
+//
+//	data := "foo"
+//	if err := Do("foo"); err != nil {
+//	        return errors.Wrapf(err, "failed to do %q", data)
+//	}
+//
+// Debugging will be easier when you can see the stacktrace.
+//
+//	if err := HugeStackCall(ctx); err != nil {
+//	        fmt.Printf("[ERROR]: %+v", err)
+//	}
 package errors
 
 import (

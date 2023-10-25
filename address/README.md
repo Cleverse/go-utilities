@@ -3,7 +3,7 @@
 
 # address
 
-[go-ethereum](https://github.com/ethereum/go-ethereum) address utilities package.
+High efficient and minimal utilities library that will help you to work with Ethereum addresses easier. (a [go-ethereum](https://github.com/ethereum/go-ethereum) helper library)
 
 ## Installation
 
