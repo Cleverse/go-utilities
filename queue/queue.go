@@ -1,15 +1,3 @@
-// Package queue provides a Pure Golang thread-safe and unlimited-size generics in-memory message queue implementation
-// that supports async enqueue and blocking dequeue.
-// It's alternative way to communicate between goroutines compared to `channel`.
-// The implementation of this in-memory message queue uses sync.Cond instead of channel.
-//
-// This queue is low-level and simple library, it's not a full-featured message queue.
-// If your use-case requires a limited-size queue and blocking enqueue, please use a channel instead.
-// For advanced use-cases like distributed queue, persistent message please use a message broker like Kafka, RabbitMQ, NATES or NSQ instead.
-//
-// You can build any advanced message queue on top of this queue (use this queue for under the hood)
-// like an advance message queue like a single-producer with multiple-consumers queue,
-// broadcast system, multiple topics queue or any other use-cases.
 package queue
 
 import (
