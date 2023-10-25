@@ -1,8 +1,3 @@
-/*
-References:
-  - k8s.io/utils/pointer
-  - k8s.io/utils/ptr
-*/
 package utils
 
 import "reflect"
