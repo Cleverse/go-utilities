@@ -9,7 +9,7 @@ Package go-utilities provides a miscellaneous useful shared Go packages by [Clev
 
   - [utils]: Minimalist pure Golang optimized generic utilities for Cleverse projects.
   - [errors]: Minimalist and zero-dependency errors library with stacktrace support for Go (for wrapping and formatting an errors).
-  - [queue]: Minimalist and zero-dependency low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue library fo Go (async enqueue and blocking dequeue supports).
+  - [queue]: Minimalist and zero-dependency low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue library for Go (async enqueue and blocking dequeue supports).
     The alternative way to communicate between goroutines compared to `channel`
   - [address]: High efficient and minimal utilities library that will help you to work with Ethereum addresses easier. (a [go-ethereum] helper library)
   - [fixedpoint]: A [shopspring/decimal] wrapper library for fixed point arithmetic operations in Cleverse projects.

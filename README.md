@@ -18,7 +18,7 @@ Minimalist and zero-dependency errors library with stacktrace support for Go (fo
 
 ## queue
 
-Minimalist and zero-dependency low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue library fo Go (async enqueue and blocking dequeue supports).\
+Minimalist and zero-dependency low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue library for Go (async enqueue and blocking dequeue supports).\
 The alternative way to communicate between goroutines compared to `channel`
 
 [See here](queue/README.md).
