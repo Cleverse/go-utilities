@@ -1,6 +1,6 @@
 module github.com/Cleverse/go-utilities/address
 
-go 1.21
+go 1.19
 
 require (
 	github.com/Cleverse/go-utilities/utils v0.0.0-20231023151028-e2291921ecce
