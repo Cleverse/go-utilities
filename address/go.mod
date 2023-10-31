@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/Cleverse/go-utilities/utils v0.0.0-20231023151028-e2291921ecce
-	github.com/ethereum/go-ethereum v1.13.4
+	github.com/ethereum/go-ethereum v1.12.0
 	github.com/stretchr/testify v1.8.4
 )
 
