@@ -83,6 +83,23 @@ func (q *Queue[T]) Dequeue() (val T, ok bool) {
 	return item, true
 }
 
+// TryDequeue removes an item from the front of the queue, similar to Dequeue.
+//
+// However, TryDequeue does NOT block if the queue is empty. It returns second value as false immediately if the queue is empty or closed.
+func (q *Queue[T]) TryDequeue() (val T, ok bool) {
+	q.mu.Lock()
+	defer q.mu.Unlock()
+
+	if q.isClosed || len(q.items) == 0 {
+		return val, false
+	}
+
+	item := q.items[0]
+	q.items = q.items[1:]
+
+	return item, true
+}
+
 // IsEmpty returns true if the queue is empty.
 func (q *Queue[T]) IsEmpty() bool {
 	q.mu.RLock()
