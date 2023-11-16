@@ -9,11 +9,11 @@ import (
 )
 
 func TestEqual(t *testing.T) {
-	type args[T primitive] struct {
+	type args[T Primitive] struct {
 		A Nullable[T]
 		B Nullable[T]
 	}
-	type specs[T primitive] struct {
+	type specs[T Primitive] struct {
 		Name     string
 		Args     args[T]
 		Expected bool

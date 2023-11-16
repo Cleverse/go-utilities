@@ -8,10 +8,11 @@ import (
 	"github.com/Cleverse/go-utilities/errors"
 )
 
-type primitive interface {
+// Primitive is a type constraint for all primitive types, except pointers, slices, maps, channels and structs.
+type Primitive interface {
 	~int | ~int8 | ~int16 | ~int32 | ~int64 |
-	~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
-	~float32 | ~float64 | ~bool | ~string
+		~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 | ~uintptr |
+		~float32 | ~float64 | ~bool | ~string
 }
 
 var nullBytes = []byte("null")
@@ -19,18 +20,18 @@ var nullBytes = []byte("null")
 // Nullable is a generic type that can be used to represent a nullable value. If valid is true, then data is considered non-null.
 // If valid is false, then data is considered null. Nullable supports all primitive types, except pointers, slices, maps, channels and structs.
 // Nullable supports
-type Nullable[T primitive] struct {
+type Nullable[T Primitive] struct {
 	valid bool
 	data  T
 }
 
 // New returns a new null Nullable.
-func New[T primitive]() Nullable[T] {
+func New[T Primitive]() Nullable[T] {
 	return Nullable[T]{}
 }
 
 // From returns a non-null Nullable with the given data.
-func From[T primitive](data T) Nullable[T] {
+func From[T Primitive](data T) Nullable[T] {
 	return Nullable[T]{
 		valid: true,
 		data:  data,
@@ -38,7 +39,7 @@ func From[T primitive](data T) Nullable[T] {
 }
 
 // Zero returns a non-null Nullable with the zero value of the given type.
-func Zero[T primitive]() Nullable[T] {
+func Zero[T Primitive]() Nullable[T] {
 	return Nullable[T]{
 		valid: true,
 	}
