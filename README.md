@@ -16,6 +16,12 @@ Minimalist and zero-dependency errors library with stacktrace support for Go (fo
 
 [See here](errors/README.md).
 
+## nullable
+
+A safe way to represent nullable primitive values in Go. Supports JSON serialization.
+
+[See here](nullable/README.md).
+
 ## queue
 
 Minimalist and zero-dependency low-level and simple queue library for thread-safe and unlimited-size generics in-memory message queue library for Go (async enqueue and blocking dequeue supports).\
