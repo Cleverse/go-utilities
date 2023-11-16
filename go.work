@@ -10,6 +10,7 @@ use (
 	./address
 	./errors
 	./fixedpoint
+	./nullable
 	./queue
 	./utils
 )
