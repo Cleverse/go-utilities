@@ -2,6 +2,7 @@
 package fixedpoint
 
 import (
+	"math"
 	"math/big"
 	"strings"
 
@@ -14,6 +15,11 @@ import (
 const (
 	DefaultPrecision    = 18
 	DefaultDivPrecision = 36
+)
+
+var (
+	Min = NewFromFloat64(1e-36)           // smallest possible FixedPoint (1e-36)
+	Max = NewFromFloat64(math.MaxFloat64) // largest possible FixedPoint (1.7976931348623157e+308)
 )
 
 type FixedPoint struct {
