@@ -4,6 +4,8 @@ import (
 	"database/sql/driver"
 
 	"github.com/Cleverse/go-utilities/errors"
+	"github.com/shopspring/decimal"
+	"github.com/vmihailenco/msgpack"
 )
 
 // UnmarshalJSON implements the json.Unmarshaler interface for json deserialization.
@@ -78,4 +80,45 @@ func (f FixedPoint) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return f.d.Decimal.RoundBank(Precision).String(), nil
+}
+
+func (f *FixedPoint) UnmarshalMsgpack(decimalBytes []byte) error {
+	if len(decimalBytes) == 0 {
+		f.d.Valid = false
+		return nil
+	}
+
+	var str string
+	err := msgpack.Unmarshal(decimalBytes, &str)
+	if err != nil {
+		f.d.Valid = false
+		return errors.WithStack(err)
+	}
+
+	if len(str) == 0 {
+		f.d.Valid = false
+		return nil
+	}
+
+	d, err := decimal.NewFromString(str)
+	if err != nil {
+		f.d.Valid = false
+		return errors.WithStack(err)
+	}
+	f.d.Decimal = d
+	f.d.Valid = true
+
+	return nil
+}
+
+func (f FixedPoint) MarshalMsgpack() ([]byte, error) {
+	input := ""
+	if f.d.Valid {
+		input = f.d.Decimal.RoundBank(Precision).String()
+	}
+	b, err := msgpack.Marshal(input)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+	return b, nil
 }
