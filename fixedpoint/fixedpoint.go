@@ -30,16 +30,20 @@ var (
 	Max = NewFromFloat64(math.MaxFloat64) // largest possible FixedPoint (1.7976931348623157e+308)
 )
 
-// SetPrecision set fixedpoint output precision (default is 18).
+// SetPrecision set fixedpoint output precision (default is 18), returns old precission.
 // div precision will be set to 2 * precision.
-func SetPrecision(precision int32) {
+func SetPrecision(precision int32) (old int32) {
+	old = Precision
 	Precision = precision
 	DivPrecision = 2 * precision
+	return
 }
 
-// SetDivPrecision set div operation precision (default is 36).
-func SetDivPrecision(precision int32) {
+// SetDivPrecision set div operation precision (default is 36), returns old div precission.
+func SetDivPrecision(precision int32) (old int32) {
+	old = DivPrecision
 	DivPrecision = precision
+	return
 }
 
 type FixedPoint struct {
