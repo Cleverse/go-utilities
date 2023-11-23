@@ -36,7 +36,7 @@ func (f FixedPoint) Div(a FixedPoint) FixedPoint {
 	if !a.IsValid() || !f.IsValid() {
 		panic("FixedPoint is not valid")
 	}
-	d := f.d.Decimal.DivRound(a.d.Decimal, DefaultDivPrecision)
+	d := f.d.Decimal.DivRound(a.d.Decimal, DivPrecision)
 	return FixedPoint{
 		d: decimal.NewNullDecimal(d),
 	}

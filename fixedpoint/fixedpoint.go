@@ -13,14 +13,34 @@ import (
 )
 
 const (
-	DefaultPrecision    = 18
-	DefaultDivPrecision = 36
+	defualtPrecision = 18
+)
+
+var (
+	// Precision is fixedpoint output precision
+	Precision int32 = defualtPrecision
+
+	// DivPrecision is div operation precision.
+	// default is 36, which is 2 * Precision
+	DivPrecision int32 = 2 * defualtPrecision
 )
 
 var (
 	Min = NewFromFloat64(1e-36)           // smallest possible FixedPoint (1e-36)
 	Max = NewFromFloat64(math.MaxFloat64) // largest possible FixedPoint (1.7976931348623157e+308)
 )
+
+// SetPrecision set fixedpoint output precision (default is 18).
+// div precision will be set to 2 * precision.
+func SetPrecision(precision int32) {
+	Precision = precision
+	DivPrecision = 2 * precision
+}
+
+// SetDivPrecision set div operation precision (default is 36).
+func SetDivPrecision(precision int32) {
+	DivPrecision = precision
+}
 
 type FixedPoint struct {
 	d decimal.NullDecimal
@@ -138,7 +158,7 @@ func NewFromBigFloat(bf *big.Float) FixedPoint {
 	if bf == nil {
 		return New()
 	}
-	s := bf.Text('f', DefaultPrecision)
+	s := bf.Text('f', int(Precision))
 	d, _ := decimal.NewFromString(s)
 	return FixedPoint{
 		d: decimal.NewNullDecimal(d),
@@ -316,7 +336,7 @@ func (f FixedPoint) StringFixed() string {
 	if !f.IsValid() {
 		return ""
 	}
-	return f.d.Decimal.StringFixed(DefaultPrecision)
+	return f.d.Decimal.StringFixed(Precision)
 }
 
 // StringFixedBank returns a banker rounded fixed-point string with places digits
@@ -330,7 +350,7 @@ func (f FixedPoint) StringFixedBank() string {
 	if !f.IsValid() {
 		return ""
 	}
-	return f.d.Decimal.StringFixedBank(DefaultPrecision)
+	return f.d.Decimal.StringFixedBank(Precision)
 }
 
 // StringWithPrecision returns a rounded fixed-point string with given precision digits after
@@ -339,6 +359,14 @@ func (f FixedPoint) StringWithPrecision(precision int32) string {
 		return ""
 	}
 	return f.d.Decimal.StringFixed(precision)
+}
+
+// StringBankWithPrecision returns a banker rounded fixed-point string with given precision digits after
+func (f FixedPoint) StringBankWithPrecision(precision int32) string {
+	if !f.IsValid() {
+		return ""
+	}
+	return f.d.Decimal.StringFixedBank(precision)
 }
 
 // Sign returns:

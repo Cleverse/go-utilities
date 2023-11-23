@@ -19,7 +19,7 @@ func (f FixedPoint) MarshalJSON() ([]byte, error) {
 	if !f.d.Valid {
 		return []byte("null"), nil
 	}
-	str := "\"" + f.d.Decimal.RoundBank(DefaultPrecision).String() + "\""
+	str := "\"" + f.d.Decimal.RoundBank(Precision).String() + "\""
 	return []byte(str), nil
 }
 
@@ -29,7 +29,7 @@ func (f FixedPoint) MarshalBinary() ([]byte, error) {
 		return nil, nil
 	}
 
-	b, err := f.d.Decimal.RoundBank(DefaultPrecision).MarshalBinary()
+	b, err := f.d.Decimal.RoundBank(Precision).MarshalBinary()
 	return b, errors.WithStack(err)
 }
 
@@ -54,7 +54,7 @@ func (f *FixedPoint) MarshalText() ([]byte, error) {
 		return []byte{}, nil
 	}
 
-	b, err := f.d.Decimal.RoundBank(DefaultPrecision).MarshalText()
+	b, err := f.d.Decimal.RoundBank(Precision).MarshalText()
 	return b, errors.WithStack(err)
 }
 
@@ -77,5 +77,5 @@ func (f FixedPoint) Value() (driver.Value, error) {
 	if !f.d.Valid {
 		return nil, nil
 	}
-	return f.d.Decimal.RoundBank(DefaultPrecision).String(), nil
+	return f.d.Decimal.RoundBank(Precision).String(), nil
 }
