@@ -28,6 +28,18 @@ func Optional[T any](opt []T) (optional T, ok bool) {
 	return optional, false
 }
 
+// DefaultOptional extract optional parameter from variadic function parameter.
+// If parameter is not provided or zero value of type T, return defaultValue.
+//
+// It's useful to reduce boilerplate code when implementing optional parameter. You won't need to check if parameter is provided or not.
+func DefaultOptional[T comparable](opt []T, defaultValue T) (result T) {
+	val, ok := Optional[T](opt)
+	if ok && val != Empty[T]() {
+		return val
+	}
+	return defaultValue
+}
+
 // ToZero alias of Zero. returns zero value of the type of the given value.
 func ToZero[T any](value T) (result T) {
 	return Zero[T](value)

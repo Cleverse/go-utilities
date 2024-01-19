@@ -91,3 +91,15 @@ func assertEqualAny(t *testing.T, expected, actual interface{}, msgAndArgs ...in
 		return expected == actual
 	}
 }
+
+func TestDefaultOptional(t *testing.T) {
+	f := func(a int, b ...int) int {
+		_b := DefaultOptional(b, 1)
+		return a + _b
+	}
+
+	assertEqual(t, 3, f(2))
+	assertEqual(t, 3, f(2, 0))
+	assertEqual(t, 3, f(2, 1))
+	assertEqual(t, 4, f(2, 2))
+}
