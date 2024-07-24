@@ -206,6 +206,30 @@ func (f FixedPoint) IsZero() bool {
 	return f.d.Decimal.IsZero()
 }
 
+// IsPositive return
+//
+//	true if d > 0
+//	false if d == 0
+//	false if d < 0
+func (f FixedPoint) IsPositive() bool {
+	if !f.IsValid() {
+		panic("FixedPoint is not valid")
+	}
+	return f.d.Decimal.IsPositive()
+}
+
+// IsNegative return
+//
+//	true if d < 0
+//	false if d == 0
+//	false if d > 0
+func (f FixedPoint) IsNegative() bool {
+	if !f.IsValid() {
+		panic("FixedPoint is not valid")
+	}
+	return f.d.Decimal.IsNegative()
+}
+
 // IsInteger returns true if the FixedPoint is an integer.
 //
 // Panics if FixedPoint is not valid.
