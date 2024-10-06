@@ -53,6 +53,16 @@ func MustNotOK[T any](data T, ok bool) T {
 	return data
 }
 
+// Error is used to simplify error handling.
+func Error[T any](data T, err error) error {
+	return err
+}
+
+// OK is used to simplify ok handling.
+func OK[T any](data T, ok bool) bool {
+	return ok
+}
+
 // must panics if err is error or false.
 func must(err any, messageArgs ...interface{}) {
 	if err == nil {
