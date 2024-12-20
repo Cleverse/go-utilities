@@ -2,6 +2,7 @@
 package fixedpoint
 
 import (
+	"database/sql/driver"
 	"math"
 	"math/big"
 	"strings"
@@ -413,4 +414,31 @@ func (f FixedPoint) Sign() int {
 func (f FixedPoint) IsOverPrecision(precision int) bool {
 	precisionCutoff := NewFromBigIntExp(big.NewInt(10), int32(-precision))
 	return f.Abs().Cmp(precisionCutoff) < 0
+}
+
+// Scan implements the sql.Scanner interface for database deserialization.
+func (f *FixedPoint) Scan(value interface{}) error {
+	if value == nil {
+		f.d.Valid = false
+		return nil
+	}
+
+	switch v := value.(type) {
+	case decimal.Decimal:
+		// Directly handle decimal.Decimal type
+		f.d.Decimal = v
+		f.d.Valid = true
+		return nil
+	default:
+		// Use the normal NullDecimal scan for other types
+		return f.d.Scan(value)
+	}
+}
+
+// Value implements the driver.Valuer interface for database serialization.
+func (f FixedPoint) Value() (driver.Value, error) {
+	if f.IsValid() {
+		return nil, nil
+	}
+	return f.d.Decimal.Value()
 }
