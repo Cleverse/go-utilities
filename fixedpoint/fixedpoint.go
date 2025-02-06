@@ -75,9 +75,21 @@ func NewFromInt32(i32 int32) FixedPoint {
 	}
 }
 
+func NewFromUint32(u32 uint32) FixedPoint {
+	return NewFromUint64(uint64(u32))
+}
+
 // NewFromInt64 returns a new FixedPoint from an int64.
 func NewFromInt64(i64 int64) FixedPoint {
 	d := decimal.NewFromInt(i64)
+	return FixedPoint{
+		d: decimal.NewNullDecimal(d),
+	}
+}
+
+// NewFromUint64 returns a new FixedPoint from a uint64, with optional exponent.
+func NewFromUint64(u64 uint64) FixedPoint {
+	d := decimal.NewFromBigInt(new(big.Int).SetUint64(u64), 0)
 	return FixedPoint{
 		d: decimal.NewNullDecimal(d),
 	}
