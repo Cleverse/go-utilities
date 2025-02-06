@@ -429,6 +429,10 @@ func (f *FixedPoint) Scan(value interface{}) error {
 		f.d.Decimal = v
 		f.d.Valid = true
 		return nil
+	case decimal.NullDecimal:
+		// Directly handle decimal.NullDecimal type
+		f.d = v
+		return nil
 	default:
 		// Use the normal NullDecimal scan for other types
 		return f.d.Scan(value)
