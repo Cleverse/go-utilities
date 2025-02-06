@@ -2,7 +2,6 @@
 package fixedpoint
 
 import (
-	"database/sql/driver"
 	"math"
 	"math/big"
 	"strings"
