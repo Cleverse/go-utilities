@@ -426,3 +426,19 @@ func (f FixedPoint) IsOverPrecision(precision int) bool {
 	precisionCutoff := NewFromBigIntExp(big.NewInt(10), int32(-precision))
 	return f.Abs().Cmp(precisionCutoff) < 0
 }
+
+func (f FixedPoint) LessThan(other FixedPoint) bool {
+	return f.Cmp(other) < 0
+}
+
+func (f FixedPoint) LessThanOrEqual(other FixedPoint) bool {
+	return f.Cmp(other) <= 0
+}
+
+func (f FixedPoint) GreaterThan(other FixedPoint) bool {
+	return f.Cmp(other) > 0
+}
+
+func (f FixedPoint) GreaterThanOrEqual(other FixedPoint) bool {
+	return f.Cmp(other) >= 0
+}
