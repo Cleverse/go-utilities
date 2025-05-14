@@ -40,3 +40,9 @@ High efficient and minimal utilities library that will help you to work with Eth
 A [shopspring/decimal](https://github.com/shopspring/decimal) wrapper library for fixed point arithmetic operations in Cleverse projects.
 
 [See here](fixedpoint/README.md).
+
+## logger
+
+A logger utility library, with support for TEXT and JSON logging (with optional GCP log format support). Supports embedding log attributes in context.
+
+[See here](logger/README.md).
