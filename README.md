@@ -46,3 +46,9 @@ A [shopspring/decimal](https://github.com/shopspring/decimal) wrapper library fo
 A logger utility library, with support for TEXT and JSON logging (with optional GCP log format support). Supports embedding log attributes in context.
 
 [See here](logger/README.md).
+
+## httpclient
+
+Simple [valyala/fasthttp](https://github.com/valyala/fasthttp) wrapper library with user-friendly interface and built-in request/response acquire and release.
+
+[See here](httpclient/go.mod).

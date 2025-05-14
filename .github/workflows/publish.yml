@@ -45,6 +45,7 @@ jobs:
             "queue"
             "utils"
             "logger"
+            "httpclient"
           )
           
           # Build and test each package
