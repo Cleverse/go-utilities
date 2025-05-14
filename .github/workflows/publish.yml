@@ -54,6 +54,8 @@ jobs:
             go mod tidy
             go build -v ./...
             go test ./...
-            GOPROXY=proxy.golang.org go list -m github.com/Cleverse/go-utilities/$PKG@$VERSION
             cd ..
           done 
+          
+          # Publish packages
+          GOPROXY=proxy.golang.org go list -m github.com/Cleverse/go-utilities@$VERSION
