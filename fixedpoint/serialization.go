@@ -93,7 +93,7 @@ func (f *FixedPoint) Scan(value interface{}) error {
 
 // Value implements the driver.Valuer interface for database serialization.
 func (f FixedPoint) Value() (driver.Value, error) {
-	if f.IsValid() {
+	if !f.IsValid() {
 		return nil, nil
 	}
 	return f.d.Decimal.RoundBank(Precision).String(), nil
