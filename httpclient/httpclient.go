@@ -14,7 +14,7 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var DefaultClient = fasthttp.Client{
+var defaultFasthttpClient = fasthttp.Client{
 	MaxConnsPerHost: 10240, // default is 512
 	ReadBufferSize:  4 * 1024,
 	WriteBufferSize: 4 * 1024,
@@ -29,14 +29,29 @@ type Config struct {
 }
 
 type Client struct {
-	baseURL *url.URL
+	baseURL        *url.URL
+	fasthttpClient *fasthttp.Client
 	Config
 }
 
 func New(baseURL string, config ...Config) (*Client, error) {
-	parsedBaseURL, err := url.Parse(baseURL)
+	client, err := NewFromClient(&defaultFasthttpClient, baseURL, config...)
 	if err != nil {
-		return nil, errors.Wrap(err, "can't parse base url")
+		return nil, errors.WithStack(err)
+	}
+	return client, nil
+}
+
+func NewFromClient(client *fasthttp.Client, baseURL string, config ...Config) (*Client, error) {
+	var parsedBaseURL *url.URL
+	var err error
+	if baseURL == "" {
+		parsedBaseURL = &url.URL{}
+	} else {
+		parsedBaseURL, err = url.Parse(baseURL)
+		if err != nil {
+			return nil, errors.Wrap(err, "can't parse base url")
+		}
 	}
 	var cf Config
 	if len(config) > 0 {
@@ -46,8 +61,9 @@ func New(baseURL string, config ...Config) (*Client, error) {
 		cf.Headers = make(map[string]string)
 	}
 	return &Client{
-		baseURL: parsedBaseURL,
-		Config:  cf,
+		baseURL:        parsedBaseURL,
+		Config:         cf,
+		fasthttpClient: client,
 	}, nil
 }
 
@@ -95,22 +111,28 @@ func (h *Client) request(ctx context.Context, reqOptions RequestOptions) (*HttpR
 		req.Header.Set(k, v)
 	}
 
-	parsedUrl := h.BaseURL()
-	parsedUrl.Path = path.Join(parsedUrl.Path, reqOptions.path)
+	baseUrl := h.BaseURL()
+	baseUrl.Path = path.Join(baseUrl.Path, reqOptions.path)
 	// Because path.Join cleans the joined path. If path ends with /, append "/" to parsedUrl.Path
-	if strings.HasSuffix(reqOptions.path, "/") && !strings.HasSuffix(parsedUrl.Path, "/") {
-		parsedUrl.Path += "/"
+	if strings.HasSuffix(reqOptions.path, "/") && !strings.HasSuffix(baseUrl.Path, "/") {
+		baseUrl.Path += "/"
 	}
-	baseQuery := parsedUrl.Query()
+	baseQuery := baseUrl.Query()
 	for k, v := range reqOptions.Query {
 		baseQuery[k] = v
 	}
-	parsedUrl.RawQuery = baseQuery.Encode()
+	baseUrl.RawQuery = baseQuery.Encode()
 
-	// remove %20 from url (empty space)
-	url := strings.TrimSuffix(parsedUrl.String(), "%20")
-	url = strings.Replace(url, "%20?", "?", 1)
-	req.SetRequestURI(url)
+	// remove %20 from requestUrl (empty space)
+	requestUrl := strings.TrimSuffix(baseUrl.String(), "%20")
+	requestUrl = strings.Replace(requestUrl, "%20?", "?", 1)
+
+	// validate requestUrl
+	if _, err := url.Parse(requestUrl); err != nil {
+		return nil, errors.Wrapf(err, "can't parse request url: %s", requestUrl)
+	}
+
+	req.SetRequestURI(requestUrl)
 	if reqOptions.Body != nil {
 		req.Header.SetContentType("application/json")
 		req.SetBody(reqOptions.Body)
@@ -126,7 +148,7 @@ func (h *Client) request(ctx context.Context, reqOptions RequestOptions) (*HttpR
 		if h.Debug {
 			ctx := logger.WithContext(ctx,
 				slog.String("method", reqOptions.method),
-				slog.String("url", url),
+				slog.String("url", requestUrl),
 				slog.Duration("duration", time.Since(start)),
 				slog.Duration("latency", time.Since(startDo)),
 				slog.Int("req_header_size", len(req.Header.Header())),
@@ -149,12 +171,24 @@ func (h *Client) request(ctx context.Context, reqOptions RequestOptions) (*HttpR
 		fasthttp.ReleaseRequest(req)
 	}()
 
-	if err := DefaultClient.Do(req, resp); err != nil {
-		return nil, errors.Wrapf(err, "url: %s", url)
+	resultCh := make(chan error, 1)
+
+	go func() {
+		resultCh <- errors.WithStack(h.fasthttpClient.Do(req, resp))
+	}()
+
+	var err error
+	select {
+	case <-ctx.Done():
+		err = ctx.Err()
+	case err = <-resultCh:
+	}
+	if err != nil {
+		return nil, errors.Wrapf(err, "error during request: url: %s", requestUrl)
 	}
 
 	httpResponse := HttpResponse{
-		URL: url,
+		URL: requestUrl,
 	}
 	resp.CopyTo(&httpResponse.Response)
 
