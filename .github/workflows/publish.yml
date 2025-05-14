@@ -1,0 +1,59 @@
+name: Publish Go Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Configure Git
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Get tag value
+        id: tag
+        run: |
+          TAG=${GITHUB_REF#refs/*/core-api@}
+          echo "Working tag: $TAG"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Build and test packages
+        env:
+          VERSION: ${{ steps.tag.outputs.tag }}
+        run: |
+          # Enable Go modules
+          go env -w GO111MODULE=on
+          
+          # List of packages to build and test
+          PACKAGES=(
+            "address"
+            "errors"
+            "fixedpoint"
+            "nullable"
+            "queue"
+            "utils"
+            "logger"
+          )
+          
+          # Build and test each package
+          for PKG in "${PACKAGES[@]}"; do
+            echo "Building and testing $PKG"
+            cd $PKG
+            go mod tidy
+            go build -v ./...
+            go test ./...
+            GOPROXY=proxy.golang.org go list -m github.com/Cleverse/go-utilities/$PKG@$VERSION
+            cd ..
+          done 
