@@ -25,9 +25,31 @@ type Nullable[T Primitive] struct {
 	data  T
 }
 
+type (
+	String  Nullable[string]
+	Int     Nullable[int]
+	Int8    Nullable[int8]
+	Int16   Nullable[int16]
+	Int32   Nullable[int32]
+	Int64   Nullable[int64]
+	Uint    Nullable[uint]
+	Uint8   Nullable[uint8]
+	Uint16  Nullable[uint16]
+	Uint32  Nullable[uint32]
+	Uint64  Nullable[uint64]
+	Float32 Nullable[float32]
+	Float64 Nullable[float64]
+	Bool    Nullable[bool]
+)
+
 // New returns a new null Nullable.
 func New[T Primitive]() Nullable[T] {
 	return Nullable[T]{}
+}
+
+// Null is an alias for New.
+func Null[T Primitive]() Nullable[T] {
+	return New[T]()
 }
 
 // From returns a non-null Nullable with the given data.
