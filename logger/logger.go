@@ -8,6 +8,8 @@ import (
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/lmittmann/tint"
 )
 
 const (
@@ -163,7 +165,13 @@ func Init(cfg Config) error {
 	case "gcp":
 		handler = NewGCPHandler(options)
 	default:
-		handler = slog.NewTextHandler(os.Stdout, options)
+		handler = tint.NewHandler(os.Stdout,
+			&tint.Options{
+				AddSource:   options.AddSource,
+				Level:       options.Level,
+				ReplaceAttr: options.ReplaceAttr,
+			},
+		)
 	}
 
 	logger = slog.New(newChainHandlers(handler, middlewares...))
