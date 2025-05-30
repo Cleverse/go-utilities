@@ -241,7 +241,7 @@ func (h *Client) Delete(ctx context.Context, path string, reqOptions RequestOpti
 func Do(ctx context.Context, method, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Do(ctx, method, "", reqOptions)
 }
@@ -250,7 +250,7 @@ func Do(ctx context.Context, method, path string, reqOptions RequestOptions) (*H
 func Get(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Get(ctx, path, reqOptions)
 }
@@ -259,7 +259,7 @@ func Get(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResp
 func Post(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Post(ctx, path, reqOptions)
 }
@@ -268,7 +268,7 @@ func Post(ctx context.Context, path string, reqOptions RequestOptions) (*HttpRes
 func Put(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Put(ctx, path, reqOptions)
 }
@@ -277,7 +277,7 @@ func Put(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResp
 func Patch(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Patch(ctx, path, reqOptions)
 }
@@ -286,7 +286,7 @@ func Patch(ctx context.Context, path string, reqOptions RequestOptions) (*HttpRe
 func Delete(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResponse, error) {
 	client, err := New(path)
 	if err != nil {
-		return nil, err
+		return nil, errors.WithStack(err)
 	}
 	return client.Delete(ctx, path, reqOptions)
 }
