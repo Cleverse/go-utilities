@@ -252,7 +252,7 @@ func Get(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResp
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return client.Get(ctx, path, reqOptions)
+	return client.Get(ctx, "", reqOptions)
 }
 
 // Post is a shortcut for New(path).Post(ctx, path, reqOptions)
@@ -261,7 +261,7 @@ func Post(ctx context.Context, path string, reqOptions RequestOptions) (*HttpRes
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return client.Post(ctx, path, reqOptions)
+	return client.Post(ctx, "", reqOptions)
 }
 
 // Put is a shortcut for New(path).Put(ctx, path, reqOptions)
@@ -270,7 +270,7 @@ func Put(ctx context.Context, path string, reqOptions RequestOptions) (*HttpResp
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return client.Put(ctx, path, reqOptions)
+	return client.Put(ctx, "", reqOptions)
 }
 
 // Patch is a shortcut for New(path).Patch(ctx, path, reqOptions)
@@ -279,7 +279,7 @@ func Patch(ctx context.Context, path string, reqOptions RequestOptions) (*HttpRe
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return client.Patch(ctx, path, reqOptions)
+	return client.Patch(ctx, "", reqOptions)
 }
 
 // Delete is a shortcut for New(path).Delete(ctx, path, reqOptions)
@@ -288,5 +288,5 @@ func Delete(ctx context.Context, path string, reqOptions RequestOptions) (*HttpR
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	return client.Delete(ctx, path, reqOptions)
+	return client.Delete(ctx, "", reqOptions)
 }
