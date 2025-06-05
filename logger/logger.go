@@ -53,6 +53,11 @@ func SetLevel(level slog.Level) (old slog.Level) {
 	return old
 }
 
+// GetLogger returns the top-level logger
+func GetLogger() *slog.Logger {
+	return logger
+}
+
 // Deprecated: Use [WithContext] instead.
 // With returns a Logger that includes the given attributes
 // in each output operation. Arguments are converted to
