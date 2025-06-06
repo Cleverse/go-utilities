@@ -25,62 +25,6 @@ type Nullable[T Primitive] struct {
 	data  T
 }
 
-type String struct {
-	Nullable[string]
-}
-
-type Int struct {
-	Nullable[int]
-}
-
-type Int8 struct {
-	Nullable[int8]
-}
-
-type Int16 struct {
-	Nullable[int16]
-}
-
-type Int32 struct {
-	Nullable[int32]
-}
-
-type Int64 struct {
-	Nullable[int64]
-}
-
-type Uint struct {
-	Nullable[uint]
-}
-
-type Uint8 struct {
-	Nullable[uint8]
-}
-
-type Uint16 struct {
-	Nullable[uint16]
-}
-
-type Uint32 struct {
-	Nullable[uint32]
-}
-
-type Uint64 struct {
-	Nullable[uint64]
-}
-
-type Float32 struct {
-	Nullable[float32]
-}
-
-type Float64 struct {
-	Nullable[float64]
-}
-
-type Bool struct {
-	Nullable[bool]
-}
-
 // New returns a new null Nullable.
 func New[T Primitive]() Nullable[T] {
 	return Nullable[T]{}
