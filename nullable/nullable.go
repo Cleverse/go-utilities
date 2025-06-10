@@ -117,7 +117,7 @@ func (n Nullable[T]) Equal(other Nullable[T]) bool {
 // MarshalJSON implements json.Marshaler interface. If the Nullable is considered null, then "null" is returned.
 func (n Nullable[T]) MarshalJSON() ([]byte, error) {
 	if !n.valid {
-		return json.Marshal(nil)
+		return nullBytes, nil
 	}
 	data, err := json.Marshal(n.data)
 	if err != nil {
