@@ -62,3 +62,24 @@ func EqualPtr[T comparable](a, b *T) bool {
 	}
 	return *a == *b
 }
+
+// MustPtr returns a pointer to the given value if it's not nil, or else returns a
+// new pointer to the zero value of the type.
+//
+// This is useful to access a pointer without checking for nil.
+func MustPtr[T any](v *T) *T {
+	if v != nil {
+		return v
+	}
+	return new(T)
+}
+
+// SafePtr returns a pointer to the given value if it's not nil, or else returns a
+// new pointer to the zero value of the type.
+//
+// This is useful to access a pointer without checking for nil.
+//
+// Alias of `MustPtr()`
+func SafePtr[T any](v *T) *T {
+	return MustPtr(v)
+}
