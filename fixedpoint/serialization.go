@@ -3,7 +3,7 @@ package fixedpoint
 import (
 	"database/sql/driver"
 
-	"github.com/Cleverse/go-utilities/errors"
+	"github.com/cockroachdb/errors"
 	"github.com/shopspring/decimal"
 	"github.com/vmihailenco/msgpack"
 )

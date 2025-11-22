@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/Cleverse/go-utilities/errors"
+	"github.com/cockroachdb/errors"
 )
 
 // Primitive is a type constraint for all primitive types, except pointers, slices, maps, channels and structs.

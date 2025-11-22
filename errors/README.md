@@ -5,6 +5,10 @@
 
 Minimalist and zero-dependency errors library with stacktrace support for Go (for wrapping and formatting an errors).
 
+# DEPRECATED
+
+This library is deprecated in favor of [github.com/cockroachdb/errors](https://pkg.go.dev/github.com/cockroachdb/errors).
+
 ## Installation
 
 ```shell
