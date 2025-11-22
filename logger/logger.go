@@ -60,16 +60,16 @@ func SetLogger(l *slog.Logger) {
 	slog.SetDefault(logger)
 }
 
+func GetLogger() *slog.Logger {
+	return logger
+}
+
 // Deprecated: Use [WithContext] instead.
 // With returns a Logger that includes the given attributes
 // in each output operation. Arguments are converted to
 // attributes as if by [Logger.Log].
 func With(args ...any) *slog.Logger {
 	return logger.With(args...)
-}
-
-func GetLogger() *slog.Logger {
-	return logger
 }
 
 // WithGroup returns a Logger that starts a group, if name is non-empty.
