@@ -6,8 +6,10 @@ import (
 
 	"github.com/Cleverse/go-utilities/logger/slogx"
 	"github.com/Cleverse/go-utilities/logger/stacktrace"
+	"github.com/lmittmann/tint"
 )
 
+// middlewareErrorStackTrace is a middleware that adds the error stack trace when ErrorKey or "err" is found.
 func middlewareErrorStackTrace() middleware {
 	return func(next handleFunc) handleFunc {
 		return func(ctx context.Context, rec slog.Record) error {
@@ -15,11 +17,15 @@ func middlewareErrorStackTrace() middleware {
 				if attr.Key == slogx.ErrorKey || attr.Key == "err" {
 					err := attr.Value.Any()
 					if err, ok := err.(error); ok && err != nil {
-						// rec.AddAttrs(slog.String(slogx.ErrorVerboseKey, fmt.Sprintf("%+v", err)))
-						rec.AddAttrs(slog.Any(slogx.ErrorStackTraceKey, stacktrace.ExtractErrorStackTraces(err)))
+						rec.AddAttrs(
+							slogx.Stringer(
+								slogx.ErrorStackTraceKey,
+								stacktrace.ExtractErrorStackTraces(err),
+							),
+						)
 					}
 				}
-				return false
+				return true
 			})
 			return next(ctx, rec)
 		}
@@ -31,10 +37,9 @@ func errorAttrReplacer(groups []string, attr slog.Attr) slog.Attr {
 		switch attr.Key {
 		case slogx.ErrorKey, "err":
 			if err, ok := attr.Value.Any().(error); ok {
-				if err != nil {
-					return slog.Attr{Key: slogx.ErrorKey, Value: slog.StringValue(err.Error())}
-				}
-				return slog.Attr{Key: slogx.ErrorKey, Value: slog.StringValue("null")}
+				aErr := tint.Attr(9, slogx.String(slogx.ErrorKey, err.Error()))
+				aErr.Key = slogx.ErrorKey
+				return aErr
 			}
 		case slogx.ErrorStackTraceKey:
 			type stackDetails struct {

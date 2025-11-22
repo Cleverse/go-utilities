@@ -53,9 +53,11 @@ func SetLevel(level slog.Level) (old slog.Level) {
 	return old
 }
 
-// GetLogger returns the top-level logger
-func GetLogger() *slog.Logger {
-	return logger
+// SetLogger sets the global logger to the provided logger instance.
+// This is useful for testing purposes where a mock logger is needed.
+func SetLogger(l *slog.Logger) {
+	logger = l
+	slog.SetDefault(logger)
 }
 
 // Deprecated: Use [WithContext] instead.
@@ -64,6 +66,10 @@ func GetLogger() *slog.Logger {
 // attributes as if by [Logger.Log].
 func With(args ...any) *slog.Logger {
 	return logger.With(args...)
+}
+
+func GetLogger() *slog.Logger {
+	return logger
 }
 
 // WithGroup returns a Logger that starts a group, if name is non-empty.
@@ -77,34 +83,34 @@ func WithGroup(group string) *slog.Logger {
 }
 
 // Debug logs at [LevelDebug].
-func Debug(msg string, args ...any) {
-	log(context.Background(), logger, slog.LevelDebug, msg, args...)
+func Debug(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, slog.LevelDebug, msg, args...)
 }
 
 // Info logs at [LevelInfo].
-func Info(msg string, args ...any) {
-	log(context.Background(), logger, slog.LevelInfo, msg, args...)
+func Info(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, slog.LevelInfo, msg, args...)
 }
 
 // Warn logs at [LevelWarn].
-func Warn(msg string, args ...any) {
-	log(context.Background(), logger, slog.LevelWarn, msg, args...)
+func Warn(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, slog.LevelWarn, msg, args...)
 }
 
 // Error logs at [LevelError] with an error.
-func Error(msg string, args ...any) {
-	log(context.Background(), logger, slog.LevelError, msg, args...)
+func Error(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, slog.LevelError, msg, args...)
 }
 
 // Panic logs at [LevelPanic] and then panics.
-func Panic(msg string, args ...any) {
-	log(context.Background(), logger, LevelPanic, msg, args...)
+func Panic(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, LevelPanic, msg, args...)
 	panic(msg)
 }
 
 // Fatal logs at [LevelFatal] followed by a call to [os.Exit](1).
-func Fatal(msg string, args ...any) {
-	log(context.Background(), logger, LevelFatal, msg, args...)
+func Fatal(msg string, args ...slog.Attr) {
+	logAttrs(context.Background(), logger, LevelFatal, msg, args...)
 	os.Exit(1)
 }
 
@@ -160,15 +166,28 @@ func Init(cfg Config) error {
 	if cfg.Debug {
 		lvl.Set(slog.LevelDebug)
 		options.AddSource = true
+	}
+
+	// enable error stack traces if debug mode is set, or output is not text
+	if cfg.Debug || cfg.Output != "text" {
 		middlewares = append(middlewares, middlewareErrorStackTrace())
 	}
 
 	switch strings.ToLower(cfg.Output) {
 	case "json":
-		lvl.Set(slog.LevelInfo)
+		options.ReplaceAttr = attrReplacerChain(options.ReplaceAttr, durationToMsAttrReplacer)
 		handler = slog.NewJSONHandler(os.Stdout, options)
+
+		middlewares = append(middlewares,
+			middlewareDurationHuman(),
+		)
 	case "gcp":
+		options.ReplaceAttr = attrReplacerChain(options.ReplaceAttr, durationToMsAttrReplacer)
 		handler = NewGCPHandler(options)
+
+		middlewares = append(middlewares,
+			middlewareDurationHuman(),
+		)
 	default:
 		handler = tint.NewHandler(os.Stdout,
 			&tint.Options{
