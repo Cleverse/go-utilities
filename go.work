@@ -1,18 +1,18 @@
-go 1.23.0
-
-// Specific Go version to use for running/compiling the code in this workspace.
-// Toolchain will be automatically installed if not already present.
-// See more: https://go.dev/blog/toolchain#toolchain-management
-toolchain go1.23.5
+go 1.25
 
 use (
 	.
 	./address
+	./cloudkms
+	./encryption
 	./errors
+	./errs
 	./fixedpoint
-	./nullable
-	./queue
-	./utils
-	./logger
 	./httpclient
+	./logger
+	./nullable
+	./postgres
+	./queue
+	./redis
+	./utils
 )
