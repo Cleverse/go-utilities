@@ -82,3 +82,9 @@ Simple [valyala/fasthttp](https://github.com/valyala/fasthttp) wrapper library w
 `errs` defines a set of common application errors, built on top of `cockroachdb/errors`.
 
 [See here](errs/README.md).
+
+## automaxprocs
+
+Automatically set GOMAXPROCS to match Linux container CPU quota by calling `automaxprocs.Init()`.
+
+[See here](automaxprocs/README.md).
