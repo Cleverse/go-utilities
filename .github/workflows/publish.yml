@@ -3,7 +3,7 @@ name: Publish Go Packages
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   publish:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.23'
+          go-version: "1.23"
 
       - name: Configure Git
         run: |
@@ -35,19 +35,28 @@ jobs:
         run: |
           # Enable Go modules
           go env -w GO111MODULE=on
-          
+
           # List of packages to build and test
+          # TODO: it's should be automatically detected from the go.work file
           PACKAGES=(
             "address"
+            "automaxprocs"
+            "cloudkms"
+            "encryption"
             "errors"
+            "errs"
+            "postgres"
+            "redis"
             "fixedpoint"
-            "nullable"
-            "queue"
-            "utils"
-            "logger"
             "httpclient"
+            "logger"
+            "nullable"
+            "postgres"
+            "queue"
+            "redis"
+            "utils"
           )
-          
+
           # Build and test each package
           for PKG in "${PACKAGES[@]}"; do
             echo "Building and testing $PKG"
@@ -57,6 +66,6 @@ jobs:
             go test ./...
             cd ..
           done 
-          
+
           # Publish packages
           GOPROXY=proxy.golang.org go list -m github.com/Cleverse/go-utilities@$VERSION
