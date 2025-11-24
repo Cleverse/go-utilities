@@ -19,6 +19,8 @@
 //	if err := HugeStackCall(ctx); err != nil {
 //	        fmt.Printf("[ERROR]: %+v", err)
 //	}
+//
+// Deprecated: Use the github.com/cockroachdb/errors instead.
 package errors
 
 import (

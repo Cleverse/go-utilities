@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/Cleverse/go-utilities/errors"
+	"github.com/cockroachdb/errors"
 	"github.com/holiman/uint256"
 	"github.com/jackc/pgtype"
 	"github.com/shopspring/decimal"
