@@ -72,5 +72,18 @@ linters-settings:
     ignore-words: []
 
   wrapcheck:
-    ignoreSigs: []
-    ignoreSigRegexps: []
+    ignoreSigs:
+      - .Errorf(
+      - errors.New(
+      - errors.Unwrap(
+      - errors.Join(
+      - .Wrap(
+      - .Wrapf(
+      - .WithMessage(
+      - .WithMessagef(
+      - .WithStack(
+      - errs.NewPublicError(
+      - errs.WithPublicMessage(
+      - withstack.WithStackDepth(
+    ignoreSigRegexps:
+      - \.New.*Error\(
