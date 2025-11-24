@@ -54,6 +54,9 @@ func String(key, value string) slog.Attr {
 
 // Stringer returns an slog.Attr for a fmt.Stringer value.
 func Stringer(key string, value fmt.Stringer) slog.Attr {
+	if value == nil {
+		return slog.Attr{}
+	}
 	return slog.String(key, value.String())
 }
 

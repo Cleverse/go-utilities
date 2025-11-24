@@ -18,7 +18,6 @@ func NewGCPHandler(opts *slog.HandlerOptions) slog.Handler {
 		Level:     opts.Level,
 		ReplaceAttr: attrReplacerChain(
 			GCPAttrReplacer,
-			durationToMsAttrReplacer,
 			opts.ReplaceAttr,
 		),
 	})
