@@ -1,6 +1,6 @@
 module github.com/Cleverse/go-utilities/postgres
 
-go 1.25
+go 1.25.0
 
 require (
 	github.com/Cleverse/go-utilities/fixedpoint v0.0.0-20250808171844-1347aec4138e
@@ -37,11 +37,11 @@ require (
 	github.com/samber/lo v1.50.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
-	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
-	golang.org/x/sync v0.18.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.31.0 // indirect
+	golang.org/x/sync v0.20.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.36.7 // indirect
 )
