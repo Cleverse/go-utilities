@@ -1,3 +1,3 @@
 module github.com/Cleverse/go-utilities/utils
 
-go 1.19
+go 1.25.0
