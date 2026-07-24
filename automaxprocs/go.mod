@@ -1,6 +1,6 @@
 module github.com/Cleverse/go-utilities/automaxprocs.go
 
-go 1.25
+go 1.25.0
 
 require (
 	github.com/Cleverse/go-utilities/logger v0.0.0-20250808171844-1347aec4138e
@@ -20,8 +20,9 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/lmittmann/tint v1.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/rogpeppe/go-internal v1.13.1 // indirect
+	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/samber/lo v1.50.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.31.0 // indirect
+	github.com/stretchr/testify v1.11.1 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 )
